@@ -3,7 +3,7 @@ CFLAGS= -O -std=gnull
 LDLIBS = -lm
 
 default: out.txt
-	cat out.txt
+	 cat out.txt
 
 out.txt: hello
 	./hello > out.txt
@@ -15,10 +15,10 @@ hello.o: hello.c
 	$(CC) $(CFLAGS) -c hello.c
 
 clean: 
-	$(RM)  hello.o hello out.txt
+	$(RM) hello.o hello out.txt
 
 test:
-	echo $(LDLIBS)
-	echo $(CC)
-	echo $(RM)
+	@echo $(LDLIBS)
+	@echo $(CC)
+	@echo $(RM)
 
