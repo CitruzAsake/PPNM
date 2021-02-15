@@ -13,11 +13,4 @@ int main(){
 	komplex_print("a+b should   = ", R);
 	komplex_print("a+b actually = ", r);
 
-/* the following is optional */
-
-	if( komplex_equal(R,r,TINY,TINY) )
-		printf("test 'add' passed :) \n");
-	else
-		printf("test 'add' failed: debug me, please... \n");
-
 }
