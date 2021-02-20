@@ -4,7 +4,7 @@ LDLIBS = $(shell gsl-config --libs)
 
 default: erf.gnuplot.png gamma.gnuplot.png
 
-gamma.gnuplot.png: data2.txt Makefile
+gamma.gnuplot.png: data2.txt Makefile 
 	echo '\
 	set terminal png;\
 	set output "$@";\
@@ -16,10 +16,11 @@ gamma.gnuplot.png: data2.txt Makefile
 	plot \
 	 "$<" using 1:2 with line title "tgamma from math.h"\
 	 ,"$<" using 1:3 with line title "gsl-sf-gamma"\
-	,"tabulated.data.txt" using 1:2 with points title "tabulated data"\
+	 ,"$<" using 1:4 with line title "Sterling Gamma"\
+	 ,"tabulated.data.txt" using 1:2 with points title "tabulated data"\
 	' | gnuplot
 
-erf.gnuplot.png: data.txt tabulatedata.txt Makefile
+erf.gnuplot.png: data.txt tabulated.data.txt Makefile
 	echo '\
 	set terminal png;\
 	set output "$@";\
@@ -42,4 +43,4 @@ main: main.o erf.o gam.o
 
 .PHONEY: clean
 clean:
-	$(RM) *.o main *.png data.txt 
+	$(RM) *.o main *.png data.txt data2.txt 

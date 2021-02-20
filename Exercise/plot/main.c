@@ -3,7 +3,8 @@
 #include<gsl/gsl_sf_erf.h>
 
 double Erf(double);
-int gam(int);
+double Gamma(double);
+
 int main(){
 	double xmin=-2,xmax=2;
 	for(double x=xmin;x<=xmax;x+=1.0/8){
@@ -12,7 +13,7 @@ int main(){
 	double ymin=-5.05,ymax=5;
 	FILE* data2=fopen("data2.txt","w");
 	for(double y=ymin;y<=ymax;y+=1.0/8){
-                fprintf(data2,"%10g %10g %10g %10d \n",y,tgamma(y),gsl_sf_gamma(y));
+                fprintf(data2,"%10g %10g %10g %10f \n",y,tgamma(y),gsl_sf_gamma(y),Gamma(y));
                 }
 
 return 0;
