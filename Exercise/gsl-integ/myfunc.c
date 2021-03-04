@@ -21,10 +21,10 @@ double myfunc(double z){
 }
 
 int main(){
-	for(double x=1.0/8;x<=5;x+=1.0/8){}
-	printf("%10gprintf("%10g\n",x,myfunc(x));
-printf("%10g\n",x,myfunc(x));
- \n",myfunc(5));
+	for(double x=1.0/8;x<=5;x+=1.0/8)
+	printf("%10g %10g \n",x,myfunc(x));
+
+printf("%10g \n",myfunc(5));
 return 0;
 }
 
