@@ -14,7 +14,11 @@ Out.plot.pdf: Out.data.txt Makefile
 	set out "$@" ;\
 	plot \
  "$<" index 0 with points pointtype 4 linecolor rgb "black" title "data" \
- ,"$<" index 1 using 1:2 with lines linecolor rgb "red" title "linear-spline" \
+,"$<" index 1 with points linecolor rgb "black" title "exact integral" \
+,"$<" index 2 using 1:2 with lines linecolor rgb "red" title "OUR linear-spline" \
+,"$<" index 3 using 1:2 with lines linecolor rgb "green" title "OUR integral-spline" \
+,"$<" index 4 using 1:2 with lines linecolor rgb "blue" title "GSL linear-spline" \
+,"$<" index 5 using 1:2 with lines linecolor rgb "black" title "GSL integral-spline" \
 	' | gnuplot
 
 Out.data.txt: main
