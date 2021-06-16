@@ -1,0 +1,9 @@
+set terminal png dpi 600
+set output "plot.png"
+set key outside
+set grid
+set xlabel "$y$"
+set ylabel "$t/\mathrm{days}$"
+set title "Raw data with error bars"
+plot \
+ "data.txt" using 1:2:3 with yerrorbars color black title "Measurements" 	\
