@@ -9,7 +9,7 @@ all: output.txt
 output.txt: main
 	./$< > $@
 
-main: main.o GramSchmidt.o utilities.o Jacobi.o
+main: main.o utilities.o Jacobi.o
 
 clean:
 	$(RM) main *.o *.txt *.ppl *.pdf *.png
