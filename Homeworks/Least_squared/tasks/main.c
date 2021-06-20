@@ -2,7 +2,7 @@
 #include<math.h>
 #include<gsl/gsl_vector.h>
 #include<gsl/gsl_matrix.h>
-#include"../util.h"
+#include"../utilities.h"
 
 //
 // DECLARATIONS AND DEFINITIONS

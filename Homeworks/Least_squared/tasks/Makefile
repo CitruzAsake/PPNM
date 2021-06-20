@@ -69,10 +69,10 @@ time.txt act.txt dact.txt: data.txt
 	cut -d " " -f 2 data.txt > activity.txt
 	cut -d " " -f 3 data.txt > unceractivity.txt
 
-main: main.o gs.o leastsquares.o ../util.o
+main: main.o gs.o leastsquares.o ../utilities.o
 
 clean:
-	$(RM) main *.o *.txt *.ppl *.pdf *.png ../util.o
+	$(RM) main *.o *.txt *.ppl *.pdf *.png
 
 test:
 	@echo $(CFLAGS)

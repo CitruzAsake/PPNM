@@ -3,7 +3,7 @@
 #include<gsl/gsl_matrix.h>
 #include<gsl/gsl_vector.h>
 #include<gsl/gsl_blas.h>
-#include"../util.h"
+#include"../utilities.h"
 
 // vector dot product
 double dot(gsl_vector* x, gsl_vector* y) {
