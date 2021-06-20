@@ -12,7 +12,7 @@ output.txt: main
 main: main.o GramSchmidt.o utilities.o
 
 clean:
-	$(RM) main *.o *.txt *.ppl *.pdf *.png ../util.o
+	$(RM) main *.o *.txt *.ppl *.pdf *.png
 
 test:
 	@echo $(CFLAGS)

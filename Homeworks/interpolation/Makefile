@@ -1,8 +1,10 @@
 CFLAGS = -Wall
 CFLAGS += $(shell gsl-config --cflags)
+LDLIBS = -lm
 LDLIBS += $(shell gsl-config --libs)
 
-all:Out.plot.pdf
+.PHONEY: all
+all:Out.plot.pdf quadratic_plot.png out.qdata.txt out.qxy.txt
 
 Out.plot.pdf: Out.data.txt Makefile
 	echo '\
@@ -21,8 +23,15 @@ Out.plot.pdf: Out.data.txt Makefile
 ,"$<" index 5 using 1:2 with lines linecolor rgb "black" title "GSL integral-spline" \
 	' | gnuplot
 
+quadratic_plot.pdf: qplot.gpi out.qdata.txt out.qxy.txt Makefile
+	gnuplot $<
+
 Out.data.txt: main
 	./$< > $@
 
+out.qdata.txt out.qxy.txt: Quadraturemain
+	./$< > $@        
+
+.PHONEY: clean
 clean:
-	$(RM) Out* main
+	$(RM) Out* main *.png Quadraturemain *.o

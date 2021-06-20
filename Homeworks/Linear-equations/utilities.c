@@ -9,15 +9,13 @@
 
 double dot(gsl_vector* x, gsl_vector* y){
 	double x_dot_y;
-	gsl_blas_ddot(x, y, &x_dot_y); //GSL function that calculates dot product
+	gsl_blas_ddot(x, y, &x_dot_y); //GSL calculation of dot product
 	return x_dot_y;
 }
 
 double norm(gsl_vector* x){
 	return sqrt(dot(x,x));
 }
-
-// print gsl vector
 void vector_print(gsl_vector* vec){
 
 	for(int i = 0; i < vec->size; i++) {
@@ -26,7 +24,6 @@ void vector_print(gsl_vector* vec){
 	printf("\n");
 }
 
-// print gsl matrix
 void matrix_print(gsl_matrix* mat){
 
 	for(int i = 0; i < mat->size1; i++) {
@@ -44,7 +41,6 @@ int binsearch_vector(gsl_vector* x, double x_new) {
 	assert(gsl_vector_get(x, 0) <= x_new && x_new <= gsl_vector_get(x, N-1));
 	int i = 0;
    int j = N-1;
-
 	while (j-i > 1) {
 		int mid = (i + j)/2;
 		if (x_new > gsl_vector_get(x, mid)) {
@@ -62,7 +58,6 @@ int binsearch_array(int N, double* x, double x_new) {
 	assert(x[0] <= x_new && x_new <= x[N-1]);
 	int i = 0;
    int j = N-1;
-
 	while (j-i > 1) {
 		int mid = (i + j)/2;
 		if (x_new > x[mid]) {
