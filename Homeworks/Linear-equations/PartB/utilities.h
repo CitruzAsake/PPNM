@@ -6,14 +6,10 @@ double dot(gsl_vector* x, gsl_vector* y);
 
 double norm(gsl_vector* x);
 
-// print gsl vector
+//Print of vector and matrix
 void vector_print(gsl_vector* vec);
-
-// print gsl matrix
 void matrix_print(gsl_matrix* mat);
 
-// binary search for gsl_vector
+// binary search for gsl vector and plain array
 int binsearch_vector(gsl_vector* x, double x_new);
-
-// binary search for plain c array
 int binsearch_array(int N, double* x, double x_new);

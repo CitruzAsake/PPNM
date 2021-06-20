@@ -35,7 +35,7 @@ int main() {
          gsl_matrix_set(A, i, j, 5*((double)random())/RAND_MAX);
       }
    }
-   // Generation of arbitary matrix A.
+   // Generation of arbitary matrix A used as original matrix.
    printf("Original A matrix:\n");
    matrix_print(A);
 
@@ -45,7 +45,7 @@ int main() {
    // Do QR 
    GS_decomp(A, R);
 
-   printf("Matrix Q:\n");
+   printf("Q:\n");
    matrix_print(A);
 
    gsl_matrix* QtQ = gsl_matrix_alloc(M, M);
@@ -53,12 +53,12 @@ int main() {
    printf("Qt*Q:\n");
    matrix_print(QtQ);
    
-   printf("R which is upper triangular:\n");
+   printf("Upper triangular part: R:\n");
    matrix_print(R);
 
    gsl_matrix* QR = gsl_matrix_alloc(N, M);
    gsl_blas_dgemm(CblasNoTrans, CblasNoTrans, 1, A, R, 0, QR);
-   printf(" Q*R, should be equal to A:\n");
+   printf(" Q*R, equivalent to A:\n");
    matrix_print(QR);
 
    // free memory  

@@ -1,25 +1,11 @@
 #include <assert.h>
-
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_blas.h>
 #include <time.h>
-
 #include "GramSchmidt.h"
 #include "utilities.h"
-
 #include <stdio.h> 
-
-
-void backsub(gsl_matrix* M, gsl_vector* v){
-	for (int i = v->size - 1; i >= 0; i--) {
-		double sum = gsl_vector_get(v, i);
-		for (int j = i + 1; j < v->size; j++) {
-			sum -= gsl_matrix_get(M, i, j)*gsl_vector_get(v, j);
-		}
-		gsl_vector_set(v, i, sum/gsl_matrix_get(M, i, i));
-	}
-}
 
 void forwardsub(gsl_matrix* L, gsl_vector*c){
     for(int i=c->size-1; i<0;i++){
@@ -29,10 +15,20 @@ void forwardsub(gsl_matrix* L, gsl_vector*c){
     }
  }  
 
-// QR decomposition by Gram-Schmidt algorithm (A <- Q)
+void backsub(gsl_matrix* M, gsl_vector* v){
+        for (int i = v->size - 1; i >= 0; i--) {
+                double sum = gsl_vector_get(v, i);
+                for (int j = i + 1; j < v->size; j++) {
+                        sum -= gsl_matrix_get(M, i, j)*gsl_vector_get(v, j);
+                }
+                gsl_vector_set(v, i, sum/gsl_matrix_get(M, i, i));
+        }
+}
+
+// QR decomposition using GS algorithm (A <- Q)
 void GS_decomp(gsl_matrix* A, gsl_matrix* R) {
 
-   assert(A->size1 >= A->size2 && A->size2 == R->size2 && R->size1 == R->size2 && "A must be n x m with n >= m; R must be m x m!");
+ assert(A->size1 >= A->size2 && A->size2 == R->size2 && R->size1 == R->size2 && "A must be n x m with n >= m; R must be m x m!");
    int m = A->size2;
    for (int i = 0; i < m; ++i) {
 
@@ -42,9 +38,9 @@ void GS_decomp(gsl_matrix* A, gsl_matrix* R) {
       double Rii = norm(&view_ai.vector);
       gsl_vector_scale(&view_ai.vector, 1/Rii);
       gsl_matrix_set(R, i, i, Rii);
-
       // calculate aj <- aj - <qi|aj>qi
       for (int j = i + 1; j < m; ++j) {
+
          gsl_vector_view view_aj = gsl_matrix_column(A, j);
          //gsl_vector* aj = &view_aj.vector;
          double Rij = dot(&view_ai.vector, &view_aj.vector);
@@ -54,19 +50,19 @@ void GS_decomp(gsl_matrix* A, gsl_matrix* R) {
    }
 }
 
-// Solve (QRx = b <=> R*x = Qt*b by back-substitution)
+// Solve using backsubstitution.
 void GS_solve(gsl_matrix* Q, gsl_matrix* R, gsl_vector* b, gsl_vector* x) {
 
-   // calculate x <- Qt*b
+   // calculate x <- Qt*b.
    gsl_blas_dgemv(CblasTrans, 1, Q, b, 0, x);
 
-   // do back-substitution
+   // back-substitution.
    backsub(R, x);
 }
 
 void GS_inverse(gsl_matrix* Q, gsl_matrix* R, gsl_matrix* B) {
    
-   // check sizes
+   // asserting sizes of matrices
    assert(Q->size1 == Q->size2 && R->size1 == R->size2 && B->size1 == B->size2 &&
           Q->size1 == R->size1 && R->size1 == B->size1 && 
           "Q, R and B must be square matrices of same size!");
@@ -86,8 +82,7 @@ void GS_inverse(gsl_matrix* Q, gsl_matrix* R, gsl_matrix* B) {
       GS_solve(Q, R, ei, bi);
    }
 
-   // free memory
+   // freeing memory
    gsl_vector_free(ei);
-
 }
 

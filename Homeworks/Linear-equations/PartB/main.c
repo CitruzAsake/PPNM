@@ -1,38 +1,28 @@
-//Implement functions to solve linear equations, calculate matrix inverse, and matrix determinant.
-
 #include<stdio.h>
 #include<stdlib.h>
 #include <time.h>
-
 #include"utilities.h"
 #include"GramSchmidt.h"
-
-
 #include<gsl/gsl_vector.h>
 #include<gsl/gsl_matrix.h>
 #include<gsl/gsl_linalg.h>
 #include<gsl/gsl_blas.h>
 
-// Part A:  Solving linear equations using QR-decomposition by modified Gram-Schmidt orthogonalization
-//implement a function which performs Gram-Schmidt orthogonalization for nxm matrix A. 
-
-// Question 1) QR decomposition Gram-Schmidt algorithm (A <- Q)
+//GS decomp part.
 void GS_decomp(gsl_matrix* A, gsl_matrix* R);
 
-// Question 2) Solve QRx = b by back-substitution
+// back substitution part. 
 void GS_solve(gsl_matrix* Q, gsl_matrix* R, gsl_vector* b, gsl_vector* x);
 
-//Part B: Matrix inverse by Gram-Schmidt QR factorization
-
+// second part (b) inverse  
 void GS_inverse(gsl_matrix* Q, gsl_matrix* R, gsl_matrix* B);
 
+void GS_inverse(gsl_matrix* Q,gsl_matrix* R, gsl_matrix* B);
 
 int main() { 
    
-   printf("====================\n");
-   printf("====   TASK B   ====\n");
-   printf("====================\n\n");
-
+   // Printing relevant task.
+   printf("--------------------B---------------\n");
 
    // initialize random square matrix A and empty matrix R
    int N = 4;   
@@ -58,18 +48,15 @@ int main() {
    printf("Q*R=A :\n");
    matrix_print(QR);
 
-   // Initialize empty matrix B and find inverse
+   // Empty matrix B and determine inverse
    gsl_matrix* B = gsl_matrix_alloc(N, N);
    GS_inverse(A, R, B);
-
    printf("B:\n");
    matrix_print(B);
-
    gsl_matrix* AB = gsl_matrix_alloc(N, N);
    gsl_blas_dgemm(CblasNoTrans, CblasNoTrans, 1, QR, B, 0, AB);
    printf("A*B:\n");
    matrix_print(AB);
-
    gsl_matrix* BA = gsl_matrix_alloc(N, N);
    gsl_blas_dgemm(CblasNoTrans, CblasNoTrans, 1, B, QR, 0, BA);
    printf("B*A:\n");
@@ -80,9 +67,6 @@ int main() {
    gsl_matrix_free(R);
    gsl_matrix_free(QR);
    gsl_matrix_free(B);
-
-
- 
 return 0;
 }
 
