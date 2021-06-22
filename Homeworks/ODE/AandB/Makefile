@@ -4,12 +4,9 @@ CFLAGS += $(shell gsl-config --cflags)
 LDLIBS += $(shell gsl-config --libs)
 
 all: cosine.png sir1.png sir2.png sir3.png sir4.png
-	@echo
-	@echo '==========================='
-	@echo '=====  TASKS A and B  ====='
-	@echo '==========================='
+	@echo '--------------TASKS A and B----------------- '
 	@echo 'Check .png plots!'
-	@echo 'The effect of Tc on the number of infectious people is huge (when the other parameters are fixed)!'
+	@echo 'WHAT we can see is that the effect of Tc on the number of infectious people is noticeable (when the other parameters are fixed)!'
 	@echo
 
 cosine.png: cosine.ppl
@@ -23,12 +20,12 @@ cosine.ppl: cosine.txt Makefile
 	@echo 'set yrange [-1.1:1.1]'							>> $@           		
 	@echo 'set xlabel "$$x$$"'								>> $@      		
 	@echo 'set ylabel "$$y$$"'								>> $@     		
-	@echo 'set title "Numerical integration of $$u^{\prime\prime} = u$$ with $$u(0) = 1, \; u^{\prime}(0) = 0$$ "'	>> $@	
+	@echo 'set title "Integration of $$u^{\prime\prime} = u$$ with $$u(0) = 1, \; u^{\prime}(0) = 0$$ "'	>> $@	
 	@echo 'plot \\'																								>> $@
 	@echo ' cos(x)  					 w l lw 3 color black title "$$\mathrm{cos}(x)$$" 		\\'>> $@
-	@echo ',"cosine.txt" using 1:2 w l lw 1 color red   title "$$y_0 = u$$" 				\\'>> $@
+	@echo ',"cosine.txt" using 1:2 w l lw 1 color cyan   title "$$y_0 = u$$" 				\\'>> $@
 	@echo ',-sin(x) 					 w l lw 3 color black title "$$-\mathrm{sin}(x)$$" 	\\'>> $@
-	@echo ',"cosine.txt" using 1:3 w l lw 1 color cyan  title "$$y_1 = u^{\prime}$$" 	\\'>> $@
+	@echo ',"cosine.txt" using 1:3 w l lw 1 color red  title "$$y_1 = u^{\prime}$$" 	\\'>> $@
 
 sir1.png: sir1.ppl
 	pyxplot $< 1> /dev/null 

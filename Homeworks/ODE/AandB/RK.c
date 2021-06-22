@@ -6,7 +6,7 @@
 
 void rkstep23(void (*f)(int n, double x, double* y, double* dydx), int n, double x, double* y_curr, double h, double* y_next, double* err) {
    
-   // declare variables
+   // variables
    double k1[n];
    double k2[n];
    double k3[n];
@@ -31,7 +31,7 @@ void rkstep23(void (*f)(int n, double x, double* y, double* dydx), int n, double
       y_temp[i] = y_curr[i] + ((2.0/9)*k1[i] + (1.0/3)*k2[i] + (4.0/9)*k3[i])*h;
    }
 
-   // fourth point, third order estimate of y(x + h), and error estimate
+   // fourth point and third order estimate of y(x + h) and error estimate
    f(n, x + h, y_temp, k4);
    for (int i = 0; i < n; ++i) {
       y_next[i] = y_curr[i] + ((7.0/24)*k1[i] + (1./4)*k2[i] + (1.0/3)*k3[i] + (1.0/8)*k4[i])*h;
@@ -43,16 +43,16 @@ void rkstep23(void (*f)(int n, double x, double* y, double* dydx), int n, double
 
 // driver function
 int odedriver(
-	void (*f)(int n, double x, double* y, double* dydx), // right-hand-side of dy/dx = f(x, y) 
-   int n,          // size of vectors 
-	double  a,      // the start-point a 
-	double  b,      // the end-point of the integration 
-	double* ya,     // y(a) 
-	double* yb,     // y(b) to be calculated 
-	double  h,      // initial step-size 
+	void (*f)(int n, double x, double* y, double* dydx), 
+   int n,          
+	double  a,  
+	double  b,  
+	double* ya, 
+	double* yb, 
+	double  h,  
 	double  acc,    // absolute accuracy goal 
 	double  eps,    // relative accuracy goal 
-   char*   outfile // trajectory file
+   char*   outfile 
 ) { 
 
    // declare variables
@@ -65,7 +65,7 @@ int odedriver(
    double tau;    // local tolerance
    FILE* file = fopen(outfile, "w");
 
-   // prepare first step and write it to file
+   //first step and write it to file
    x = a;
    fprintf(file, "%20.12e ", x);
    for (int i = 0; i < n; ++i) {
@@ -90,7 +90,7 @@ int odedriver(
       // make step
       rkstep23(f, n, x, y, h, yh, err);
       
-      // calculate local error as norm of error estimate vector
+      //  local error as norm of error estimate vector
       sum = 0;
       for (int i = 0; i < n; ++i) {
          sum += err[i]*err[i];
@@ -98,7 +98,7 @@ int odedriver(
       double e = sqrt(sum);
       //printf("Error = %.5f\n", e);
 
-      // calculate norm of estimated y(x + h)
+     
       sum = 0;
       for (int i = 0; i < n; ++i) {
          sum += yh[i]*yh[i];

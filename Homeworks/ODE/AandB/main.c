@@ -4,24 +4,24 @@
 #include<gsl/gsl_matrix.h>
 #include"../utilities.h"
 
-// stepper function
+// step function
 void rkstep23(void (*f)(int n, double x, double* y, double* dydx), int n, double* yx, double h, double* yh, double* err);
 
 // driver function
 void odedriver(
 	void (*f)(int n, double x, double* y, double* dydx), // right-hand-side of dy/dx = f(x, y) 
    int n,          // size of vectors 
-	double  a,      // the start-point a 
-	double  b,      // the end-point of the integration 
-	double* ya,     // y(a) 
+	double  a,      // initial-point a 
+	double  b,      // end-point of the integration 
+	double* ya,      
 	double* yb,     // y(b) to be calculated 
 	double  h,      // initial step-size 
-	double  acc,    // absolute accuracy goal 
+	double  acc,    // accuracy goal 
 	double  eps,    // relative accuracy goal 
 	char*   outfile // trajectory file
 );
 
-// RHS function for u'' = -u
+// RHS  u'' = -u
 void f(int n, double x, double* y, double* dydx) {
    dydx[0] =  y[1];
    dydx[1] = -y[0];
@@ -39,17 +39,10 @@ void f_SIR(int n, double x, double* y, double*dydx) {
 
 int main() {
    {
-   //
+  
    // TEST: u'' = -u
-   //
-   
-   // solve u'' = -u as a test (solution is a cosine)
-   // the system is equivalent to
-   // [ y0' ] = [  y1 ]
-   // [ y1' ]   [ -y0 ]
-   // with  y0 = u and y1 = u'
 
-   // declare and set variables for odedriver
+   // variables for odedriver
    int n = 2; 
    double a = 0;
    double b = 2*M_PI;
@@ -60,7 +53,7 @@ int main() {
    double eps = 1e-4;
    char* outfile = "cosine.txt";
 
-   // set initial values
+   // initial values
    ya[0] = 1;
    ya[1] = 0;
 
@@ -99,58 +92,39 @@ int main() {
    
    // call driver
    odedriver(&f_SIR, n, a, b, ya, yb, h, acc, eps, outfile);
-
-
    // SCENARIO 2
-
    // set parameters for the SIR model
    outfile = "sir2.txt";
    N = 5.8e6;
    Tr = 7;
    Tc = 1.5;
-
    // set initial values
    ya[0] = N;
    ya[1] = 50;
    ya[2] = 0;
-   
    // call driver
    odedriver(&f_SIR, n, a, b, ya, yb, h, acc, eps, outfile);
 
-
-
+// SAME PROCEDURE FOR THE REST 2 EXAMPLES! 
    // SCENARIO 3
-
-   // set parameters for the SIR model
    outfile = "sir3.txt";
    N = 5.8e6;
    Tr = 7;
    Tc = 2.5;
-
-   // set initial values
    ya[0] = N;
    ya[1] = 50;
    ya[2] = 0;
-   
-   // call driver
    odedriver(&f_SIR, n, a, b, ya, yb, h, acc, eps, outfile);
 
-
    // SCENARIO 4
-
-   // set parameters for the SIR model
    outfile = "sir4.txt";
    b = 180;
    N = 5.8e6;
    Tr = 7;
    Tc = 4.0;
-
-   // set initial values
    ya[0] = N;
    ya[1] = 50;
    ya[2] = 0;
-   
-   // call driver
    odedriver(&f_SIR, n, a, b, ya, yb, h, acc, eps, outfile);
 
    }

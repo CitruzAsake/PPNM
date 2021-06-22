@@ -6,10 +6,10 @@
 #include<gsl/gsl_vector.h>
 #include"utilities.h"
 
-
+// Dot utility
 double dot(gsl_vector* x, gsl_vector* y){
 	double x_dot_y;
-	gsl_blas_ddot(x, y, &x_dot_y); //GSL function that calculates dot product
+	gsl_blas_ddot(x, y, &x_dot_y);
 	return x_dot_y;
 }
 
