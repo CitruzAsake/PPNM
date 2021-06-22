@@ -18,7 +18,7 @@ void timesJ(gsl_matrix* A, int p, int q, double theta);
 // A <- J*A
 void Jtimes(gsl_matrix* A, int p, int q, double theta);
 
-// Jacobi rotation
+// J-rotation
 void Jacobi(gsl_matrix* A, gsl_matrix* V);
 
 int main(){

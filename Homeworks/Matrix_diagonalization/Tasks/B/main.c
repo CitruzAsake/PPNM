@@ -18,7 +18,7 @@ void timesJ(gsl_matrix* A, int p, int q, double theta);
 // A <- J*A
 void Jtimes(gsl_matrix* A, int p, int q, double theta);
 
-// Jacobi rotation
+// J-rotation
 void Jacobi(gsl_matrix* A, gsl_matrix* V);
 
 int main(){
@@ -28,7 +28,7 @@ int main(){
    double x;
    int nplots = 3;
 
-   //Now make new file containing eigenfunctions (numerical and analytical) and plot
+   //New file containing eigenfunction and plot
     
     // Hamiltonian matrix
     int n = 100;
@@ -49,13 +49,13 @@ int main(){
     gsl_matrix_set(H, n-1, n-2,  1*k);
     gsl_matrix_set(H, n-1, n-1, -2*k);
 
-    // Use the Jacobi-implementation
+    //Jacobi-implementation
 
     gsl_matrix* V = gsl_matrix_alloc(n, n);
     gsl_matrix_set_identity(V);
     Jacobi(H, V);
 
-   printf("Particle in a box energies:\n");
+   printf("Energies for particle in box:\n");
    for (int k = 0; k < 10; ++k) {
       double exact = M_PI*M_PI*(k + 1)*(k + 1);
       double calc  = gsl_matrix_get(H, k, k);

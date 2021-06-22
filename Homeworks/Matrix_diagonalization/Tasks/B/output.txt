@@ -1,4 +1,4 @@
-Particle in a box energies:
+Energies for particle in box:
 n =  1: exact =   9.869604, calc =   9.868809
 n =  2: exact =  39.478418, calc =  39.465687
 n =  3: exact =  88.826440, calc =  88.762003

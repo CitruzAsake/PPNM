@@ -1,6 +1,8 @@
+
 #include<math.h>
 #include<gsl/gsl_matrix.h>
 
+//Multiplies arbitary matrix A with Jacobi matrix
 void timesJ(gsl_matrix* A, int p, int q, double theta){
 	double c=cos(theta),s=sin(theta);
 	for(int i=0;i<A->size1;i++){
@@ -10,7 +12,7 @@ void timesJ(gsl_matrix* A, int p, int q, double theta){
 		gsl_matrix_set(A,i,q,new_aiq);
 		}
 }
-
+//Dots jacobi matrix and arbitary A chosen
 void Jtimes(gsl_matrix* A, int p, int q, double theta){
 	double c=cos(theta),s=sin(theta);
         for(int j=0;j<A->size2;j++){
@@ -21,7 +23,7 @@ void Jtimes(gsl_matrix* A, int p, int q, double theta){
                 }
 
 }
-
+//Diagonolizes using the rotation of Jacobi
 int Jacobi(gsl_matrix* A, gsl_matrix* V){
 	gsl_matrix_set_identity(V);
 	int n=A->size1,changed,sweeps=0;

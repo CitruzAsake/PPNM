@@ -16,8 +16,6 @@ double dot(gsl_vector* x, gsl_vector* y){
 double norm(gsl_vector* x){
 	return sqrt(dot(x,x));
 }
-
-// print gsl vector
 void vector_print(gsl_vector* vec){
 
 	for(int i = 0; i < vec->size; i++) {
@@ -26,7 +24,6 @@ void vector_print(gsl_vector* vec){
 	printf("\n");
 }
 
-// print gsl matrix
 void matrix_print(gsl_matrix* mat){
 
 	for(int i = 0; i < mat->size1; i++) {
@@ -73,14 +70,5 @@ int binsearch_array(int N, double* x, double x_new) {
    }
 
 	return i;
-}
-
-double funs(int i, double x){
-    switch(i){
-        case 0: return 1; break;
-        case 1: return x; break;
-        case 2: return x*x; break;
-        default: return NAN;
-        }
 }
 
