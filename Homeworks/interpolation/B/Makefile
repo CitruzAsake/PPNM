@@ -1,30 +1,36 @@
-CFLAGS = -Wall -O
+CC = gcc
+CFLAGS = -Wall -O1 -std=gnu11
 CFLAGS += $(shell gsl-config --cflags)
-LDLIBS = -lm
 LDLIBS += $(shell gsl-config --libs)
 
-.PHONEY: all
-all: out.qdata.txt out.qxy.txt quadratic_plot.pdf
+all: quadraturespline.pdf
+	@echo '30 data points made with sin(i*i)'
 
-quadratic_plot.pdf: out.qdata.txt out.qxy.txt Makefile
-		echo '\
-	set term pdfcairo noenhanced ;\
-	set title "Illustration of gsl_interp_eval and gsl_interp_eval_integ" ;\
-	set key left ;\
-	set xlabel "x" ;\
-	set ylabel "y" ;\
-	set out "$@" ;\
-	plot \
- "$<" index 0 with points pointtype 4 linecolor rgb "black" title "interp value" \
-,"$<" index 1 with points linecolor rgb "black" title "integral value +1" \
-,"$<" index 2 using 1:2 with lines linecolor rgb "red" title "diff value" \
-,"$<" index 3 using 1:2 with lines linecolor rgb "green" title "sin(x) values" \
-,"$<" index 4 using 1:2 with lines linecolor rgb "blue" title "cos(x) values" \
-	' | gnuplot
 
-out.qdata.txt out.qxy.txt: Quadraturemain
-	./$<
+output.txt: main
+	./$< > $@
 
-PHONEY: clean
 clean:
-	$(RM) main *.o out* Quadraturemain *.pdf
+	$(RM) Out* main
+
+quadraturespline.pdf: quadraturespline.ppl
+	pyxplot $< 1> /dev/null
+
+quadraturespline.ppl: output.txt Makefile
+	@echo 'set terminal pdf dpi 800'						>  $@
+	@echo 'set output "quadraturespline.pdf"'						>> $@
+	@echo 'set key outside' 								>> $@
+	@echo 'set grid'											>> $@
+	@echo 'set xlabel "$$x$$"'								>> $@
+	@echo 'set ylabel "$$y$$"'								>> $@
+	@echo 'set title "Interpolation by Quadraturespline "'	>> $@
+	@echo 'plot \\'																								>> $@
+	@echo '"output.txt" index 0 using 1:2 w p pt 31 ps 1 color yellow title "Data" 		\\'>> $@
+	@echo ',"output.txt" index 1 using 1:2 w l lt 1 lw 1 ps 1 color black  title "Interpolation data" 		\\'>> $@
+	@echo ',"output.txt" index 2 using 1:2 w l lt 5 lw 1 ps 0.75 color Cyan  title "Integral data" 		\\'>> $@
+	@echo ',"output.txt" index 3 using 1:2 w l lt 6 lw 1 ps 0.75 color Mahogany  title "Derivative" 		\\'>> $@
+
+main: main.o ../utilities.o quadraturespline.o
+
+clean:
+	$(RM) main *.o *.txt *.ppl *.pdf *.png
