@@ -3,7 +3,7 @@
 #include<assert.h>
 #include<complex.h>
 
-//Implement a multidimensional Monte-Carlo integrator that uses low-discrepancy (quasi-random) sequences. The error could be estimated by using two different sequences. Compare the scaling of the error with pseudo-random Monte-Carlo integrator.
+//We want to implement a multidimensional MONTE-CARLO integrator, which uses low-discrepancy sequences. ALso we want to estimate the errors and compare the scaling with pseudo random MONTE-CARLO.
 
 //Van der Corput and Halton sequences
 

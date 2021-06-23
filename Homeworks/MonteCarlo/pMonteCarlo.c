@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<complex.h>
 #define RND (double)rand()/RAND_MAX
-//Implement plain Monte Carlo multi-dimensional integration. This is a quasi-random Monte-Carlo integrator and will later be compared to a pseudo-random Monte-Carlo integrator.
+//Plain MONTE-CARLO
 
 void randomx(int dim, double* a, double* b, double* x)
 {
