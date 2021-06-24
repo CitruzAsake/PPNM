@@ -1,0 +1,3 @@
+-----------------NEWTON solved problem A-----------------------
+The extremum Rosenbrock valley function has location (x= 1,y=1) 
+---------------------------------------------------------------
