@@ -1,0 +1,13 @@
+Searching for minimum of Rosenbrock function f(x,y) = (1 - x)**2 + 100*(y - x**2)**2
+Converged after 187 iterations!
+Minimum value y = 9.2422e-12 located at x = 
+    1.0000
+    1.0000
+
+-----------------------------------------
+Searching for minimum of Himmelblau function g(x,y) = (x*x + y - 11)**2 + (x + y*y - 7)**2
+Converged after 125 iterations!
+Minimum value y = 7.4426e-10 located at x = 
+    3.0000
+    2.0000
+
