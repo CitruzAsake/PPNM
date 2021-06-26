@@ -51,8 +51,8 @@ int main()
 	
 	for(double z=min;z<=max;z+=diffz){
 	double y  = ann_response(network,z);
-    	double yprime  = derivative_func(network,z);
-    	double yprimeprime  = integral_func(network,z);
+    	double yprime  =ann_derivative(network,z);
+    	double yprimeprime  =ann_feedInt(network,z);
 		printf(" %.12e %.12e %.12e %.12e\n",z,y,yprime, yprimeprime);
  	   }
 	for(int i=0;i<network->n;i++){
