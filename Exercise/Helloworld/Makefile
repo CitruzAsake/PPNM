@@ -1,5 +1,4 @@
-CC = clang
-CFLAGS= -O -std=gnull
+CC = gcc
 LDLIBS = -lm
 
 default: out.txt

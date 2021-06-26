@@ -1,6 +1,11 @@
 #include <stdio.h>
+#include <math.h>
+
 int main(void){
-	printf("Hello World\n");
+	double r=sqrt(2);
+	
+	printf("Hello World, Value of r= %f \n",r);
+
 return 0;
 }
 
