@@ -1,9 +1,9 @@
-LDLIBS= -lm
+CC = gcc
 CFLAGS = -Wall -O1 -std=gnu11
-LDLIBS += $(shell gsl-config --cflags)
+LDLIBS += $(shell gsl-config --libs)
 CFLAGS += $(shell gsl-config --cflags)
 
-all: outfile.txt fitplot.png
+all: outfile.txt fitplot.pdf
 
 	@echo '--------------------------------'
 	@echo '-------------Task---------------'

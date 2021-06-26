@@ -72,7 +72,7 @@ double ann_feedInt(ann* network,double x)
 	return total;
 }
 
-int quasiNewton(double F(gsl_vector* x), gsl_vector*x, double acc);
+int quasiNewton(double F(gsl_vector* x), gsl_vector* x, double acc);
 
 void ann_train(ann* network, gsl_vector* xs, gsl_vector* ys){
 
@@ -91,7 +91,7 @@ double cost(gsl_vector* p){
 	gsl_vector* p=gsl_vector_alloc(network->params->size);
 	gsl_vector_memcpy(p,network->params);
 
-	quasinewton(cost,p,1e-5);
+	quasiNewton(cost,p,1e-6);
 
 	gsl_vector_memcpy(network->params,p);
 	gsl_vector_free(p);

@@ -28,7 +28,7 @@ void numeric_gradient(double F(gsl_vector*), gsl_vector*x, gsl_vector*grad)
 	}
 }
 
-int qnewton(double F(gsl_vector* x), gsl_vector*x, double acc) 
+int quasiNewton(double F(gsl_vector* x), gsl_vector*x, double acc) 
 {
 	int dim=x->size;
 	int steps=0;

@@ -21,7 +21,7 @@ double fit(double x){
 
 int main()
 {
-    int n=8;
+    int n=5;
 	ann* network=ann_alloc(n,activation);
 	double min=-1,max=1;
 	int nx=20;
@@ -51,8 +51,8 @@ int main()
 	
 	for(double z=min;z<=max;z+=diffz){
 	double y  = ann_response(network,z);
-    	double yprime  = ann_derivative(network,z);
-    	double yprimeprime  = ann_integral(network,z);
+    	double yprime  = derivative_func(network,z);
+    	double yprimeprime  = integral_func(network,z);
 		printf(" %.12e %.12e %.12e %.12e\n",z,y,yprime, yprimeprime);
  	   }
 	for(int i=0;i<network->n;i++){
