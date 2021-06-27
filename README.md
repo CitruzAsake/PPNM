@@ -3,7 +3,7 @@
 #In this repository the solutions for the Exercises, Homeworks and Exam-project for the Spring semester of 2021 for Akgash Sundaralingam are presented.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-Student information: 
+Student information: \newline
 Name: Akgash Sundaralingam
 Student ID: 201706696
 AU ID: au593102
