@@ -1,4 +1,4 @@
-quasinewton: steps=1000 g=750 d=250 fx=6.4e-04
+quasiNewton: steps=1000 g=750 d=250 fx=6.4e-04
 i=0 ai,bi,si = -1.19132 0.733182 1.87869
 i=1 ai,bi,si = -0.230025 1.25101 -0.470774
 i=2 ai,bi,si = -0.0975249 0.516904 3.53904

@@ -96,6 +96,6 @@ gsl_vector_free(gz);
 gsl_vector_free(y);
 gsl_vector_free(u);
 gsl_vector_free(a);
-fprintf(stderr,"quasinewton: steps=%i g=%i d=%i fx=%.1e\n",steps,g,d,fx);
+fprintf(stderr,"quasiNewton: steps=%i g=%i d=%i fx=%.1e\n",steps,g,d,fx);
 return steps;
 }

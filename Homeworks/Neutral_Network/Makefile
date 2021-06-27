@@ -32,11 +32,11 @@ fitplot.ppl: outfile.txt Makefile
 
 	@echo 'plot \\'									>> $@
 
-	@echo '"outfile.txt"  index 1 using 1:2 w l lw 2 color black  title "Curve fit func" \\'>> $@
+	@echo '"outfile.txt"  index 1 using 1:1 w l lw 2 color black  title "Integral fit func" \\'>> $@
 
-	@echo ',"outfile.txt" index 1 using 1:3 w l lw 2 color cyan title "Derivative fit func" \\'>> $@
+	@echo ',"outfile.txt" index 1 using 1:2 w l lw 2 color cyan title "Curve fit func" \\'>> $@
 
-	@echo ',"outfile.txt" index 1 using 1:4 w l lw 2 color SpringGreen title "Integral fit func" \\'>> $@
+	@echo ',"outfile.txt" index 1 using 1:3 w l lw 2 color SpringGreen title "Derivative fit func" \\'>> $@
 
 	@echo ',exp(-x*x)*(-5*sin(5*x-1)-2*x*cos(5*x-1)) w l lt 2 lw 2 color blue title "Analytical derivative function" \\' >> $@
 
