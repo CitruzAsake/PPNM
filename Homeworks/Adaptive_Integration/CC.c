@@ -18,13 +18,13 @@ double CC24( double f(double),double a, double b,double acc, double eps, double 
 {   
     assert(nrec <10000);
     double f1=F(f,a+(b-a)/6), f4=F(f,a+5*(b-a)/6);
-	double Q=(2*f1+f2+f3+2*f4)/6*(b-a), q=(f1+f4+f2+f3)/4*(b-a);
-	double tolerance=acc+eps*fabs(Q), error=fabs(Q-q)/3;
-	if(error < tolerance) return Q;
+	double Z=(2*f1+f2+f3+2*f4)/6*(b-a), q=(f1+f4+f2+f3)/4*(b-a);
+	double tolerance=acc+eps*fabs(Z), error=fabs(Z-q)/3;
+	if(error < tolerance) return Z;
 	else {
-		double Q1=CC24(f,a,(a+b)/2,acc/SQR2,eps,f1,f2,nrec+1);
-		double Q2=CC24(f,(a+b)/2,b,acc/SQR2,eps,f3,f4,nrec+1);
-		return Q1+Q2; }
+		double Z1=CC24(f,a,(a+b)/2,acc/SQR2,eps,f1,f2,nrec+1);
+		double Z2=CC24(f,(a+b)/2,b,acc/SQR2,eps,f3,f4,nrec+1);
+		return Z1+Z2; }
 }
 
 double clenshaw(double f(double),double a,double b, double acc,double eps ){

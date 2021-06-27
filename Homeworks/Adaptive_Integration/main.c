@@ -103,7 +103,7 @@ int main()
     }
     {
         printf("Now compare to GSL \n");
-        printf("===================\n");
+        printf("-------------------------\n");
         gsl_integration_workspace * w
         = gsl_integration_workspace_alloc (1000);
 
@@ -125,7 +125,7 @@ int main()
         gsl_integration_workspace_free (w);
     }
     {
-        printf("====================\n");
+        printf("--------------------------\n");
         gsl_integration_workspace * w
         = gsl_integration_workspace_alloc (1000);
 
@@ -148,7 +148,7 @@ int main()
         gsl_integration_workspace_free (w);
     }
     {
-        printf("==========================\n");
+        printf("---------------------------\n");
         gsl_integration_workspace * w
         = gsl_integration_workspace_alloc (1000);
 
@@ -171,7 +171,7 @@ int main()
         gsl_integration_workspace_free (w);
     }
     {
-        printf("===========================\n");
+        printf("----------------------------\n");
         gsl_integration_workspace * w
         = gsl_integration_workspace_alloc (1000);
 

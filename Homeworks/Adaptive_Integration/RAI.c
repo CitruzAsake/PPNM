@@ -10,17 +10,17 @@ double integralrun(double f(double),double f2, double f3, double a, double b, do
     assert(nrec <10000);
     double f1 = f(a+1.*(b-a)/6.);
     double f4 = f(a+5.*(b-a)/6.);
-    double Q = (b-a)*(2.*f1+f2+f3+2*f4)/6.;
-    double q = (b-a)*(f1+f4+f2+f3)/4.;
-    double toll = acc+eps*fabs(Q);
-    double err = fabs(Q-q);
+    double Z = (b-a)*(2.*f1+f2+f3+2*f4)/6.;
+    double z = (b-a)*(f1+f4+f2+f3)/4.;
+    double toll = acc+eps*fabs(Z);
+    double err = fabs(Z-z);
 
-    if(err < toll) return Q;
+    if(err < toll) return Z;
     else
     {
-        double Q1 = integralrun(f,f1,f2,a,(a+b)/2,acc/sqrt(2),eps,nrec+1);
-        double Q2 = integralrun(f,f3,f4,(a+b)/2,b,acc/sqrt(2),eps,nrec+1);
-        return Q1+Q2;
+        double Z1 = integralrun(f,f1,f2,a,(a+b)/2,acc/sqrt(2),eps,nrec+1);
+        double Z2 = integralrun(f,f3,f4,(a+b)/2,b,acc/sqrt(2),eps,nrec+1);
+        return Z1+Z2;
     }
 }
 
