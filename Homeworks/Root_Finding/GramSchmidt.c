@@ -5,18 +5,13 @@
 #include <time.h>
 #include <stdio.h> 
 
-double dot(gsl_vector* x, gsl_vector* y);
-
-double norm(gsl_vector* x);
-                            
-
 void forwardsub(gsl_matrix* L, gsl_vector*c){
     for(int i=c->size-1; i<0;i++){
         double s=gsl_vector_get(c,i);
         for(int k=1; k<i-1; k++) s-=gsl_matrix_get(L,i,k)*gsl_vector_get(c,k);
         gsl_vector_set(c,i,s/gsl_matrix_get(L,i,i));
     }
- }  
+ }
 
 void backsub(gsl_matrix* M, gsl_vector* v){
         for (int i = v->size - 1; i >= 0; i--) {
@@ -28,24 +23,24 @@ void backsub(gsl_matrix* M, gsl_vector* v){
         }
 }
 
+double dot(gsl_vector* x, gsl_vector* y);
+
+double norm(gsl_vector* x);
+
 // QR decomposition using GS algorithm (A <- Q)
 void GS_decomp(gsl_matrix* A, gsl_matrix* R) {
 
  assert(A->size1 >= A->size2 && A->size2 == R->size2 && R->size1 == R->size2 && "A must be n x m with n >= m; R must be m x m!");
-   int m = A->size2;
-   for (int i = 0; i < m; ++i) {
-
-      // calculate ai <- ai/||ai||
+   int z = A->size2;
+   for (int i = 0; i < z; ++i) {
       gsl_vector_view view_ai = gsl_matrix_column(A, i);
-      //gsl_vector* ai = &view_ai.vector;
       double Rii = norm(&view_ai.vector);
       gsl_vector_scale(&view_ai.vector, 1/Rii);
       gsl_matrix_set(R, i, i, Rii);
-      // calculate aj <- aj - <qi|aj>qi
-      for (int j = i + 1; j < m; ++j) {
+
+      for (int j = i + 1; j < z; ++j) {
 
          gsl_vector_view view_aj = gsl_matrix_column(A, j);
-         //gsl_vector* aj = &view_aj.vector;
          double Rij = dot(&view_ai.vector, &view_aj.vector);
          gsl_blas_daxpy(-Rij, &view_ai.vector, &view_aj.vector);
          gsl_matrix_set(R, i, j, Rij);
@@ -55,33 +50,22 @@ void GS_decomp(gsl_matrix* A, gsl_matrix* R) {
 
 // Solve using backsubstitution.
 void GS_solve(gsl_matrix* Q, gsl_matrix* R, gsl_vector* b, gsl_vector* x) {
-
-   // calculate x <- Qt*b.
    gsl_blas_dgemv(CblasTrans, 1, Q, b, 0, x);
-
-   // back-substitution.
    backsub(R, x);
 }
 
 void GS_inverse(gsl_matrix* Q, gsl_matrix* R, gsl_matrix* B) {
-   
-   // asserting sizes of matrices
    assert(Q->size1 == Q->size2 && R->size1 == R->size2 && B->size1 == B->size2 &&
           Q->size1 == R->size1 && R->size1 == B->size1 && 
-          "Q, R and B must be square matrices of same size!");
+          "Q, R and B ought to be square matrices of equal size!");
    
-   int n = Q->size1;
-
-   // allocate vector ei for solving A*bi = ei
-   gsl_vector* ei = gsl_vector_alloc(n);
-
-   // loop over columns i
-   for (int i = 0; i < n; ++i) { 
+   int y = Q->size1;
+   gsl_vector* ei = gsl_vector_alloc(y);
+   for (int i = 0; i < y; ++i) { 
 
       gsl_vector_view view = gsl_matrix_column(B, i);
       gsl_vector* bi = &view.vector;
       gsl_vector_set_basis(ei, i);
-      
       GS_solve(Q, R, ei, bi);
    }
 

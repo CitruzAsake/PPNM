@@ -1,4 +1,4 @@
-include <math.h>
+#include <math.h>
 #include <gsl/gsl_vector.h>
 #include <stdio.h>
 #include <stdlib.h>

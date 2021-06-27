@@ -5,7 +5,7 @@
 #include<math.h>
 
 
-static int ncalls;
+static int calls;
 
 void Jacobian(void f(gsl_vector* x,gsl_vector* fx), gsl_vector* x);
 
@@ -20,8 +20,8 @@ void Rosenbrock(gsl_vector* x, gsl_vector* fx){
     gsl_vector_set(fx,1,2*100*(Y-X*X));
 }
 
-void f(gsl_vector* p,gsl_vector* fx){
-	ncalls++;
+void nfunc(gsl_vector* p,gsl_vector* fx){
+	calls++;
 	double x=gsl_vector_get(p,0), y=gsl_vector_get(p,1);
 	gsl_vector_set(fx,0, 2*(1-x)*(-1)+100*2*(y-x*x)*(-1)*2*x);
 	gsl_vector_set(fx,1, 100*2*(y-x*x));

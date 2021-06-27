@@ -6,12 +6,8 @@ LDLIBS += $(shell gsl-config --libs)
 all: quadraturespline.pdf
 	@echo '30 data points made with sin(i*i)'
 
-
 output.txt: main
 	./$< > $@
-
-clean:
-	$(RM) Out* main
 
 quadraturespline.pdf: quadraturespline.ppl
 	pyxplot $< 1> /dev/null

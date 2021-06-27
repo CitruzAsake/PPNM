@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<math.h>
 #include<gsl/gsl_vector.h>
+#include"../utilities.h"
 
 typedef struct {int n; double* x, *y, *b, *c;} qspline;
 
@@ -49,17 +50,12 @@ qspline* qspline_alloc(int n, double* x, double* y)
 		dy[i]=(y[i+1]-y[i])/dx[i];
 	}
 	s->c[0]=0;
-	for (i=0;i<n-2;i++){
-		s->c[i+1]=(dy[i+1]-dy[i]-s->c[i]*dx[i])/dx[i+1];
+	for (i=0;i<n-2;i++){s->c[i+1]=(dy[i+1]-dy[i]-s->c[i]*dx[i])/dx[i+1];
 	}
 	s->c[n-2]/=2;
-	for (i=n-3;i>=0;i--){
-		s->c[i]=(dy[i+1]-dy[i]-s->c[i+1]*dx[i+1])/dx[i];
+	for (i=n-3;i>=0;i--){ s->c[i]=(dy[i+1]-dy[i]-s->c[i+1]*dx[i+1])/dx[i];
 	}
-	for (i=0;i<n-1;i++){
-		s->b[i]=dy[i]-s->c[i]*dx[i];
-
-	}
+	for (i=0;i<n-1;i++){s->b[i]=dy[i]-s->c[i]*dx[i];}
 return s;
 }
 
@@ -72,10 +68,4 @@ double qspline_deriv(qspline* s, double x_new)
 }
 
 void qspline_free(qspline *s)
-{
-	free(s->x);
-	free(s->y);
-	free(s->b);
-	free(s->c);
-	free(s);
-}
+{free(s->x);free(s->y);free(s->b);free(s->c);free(s);}

@@ -6,7 +6,15 @@
 #include<gsl/gsl_vector.h>
 #include"utilities.h"
 
-// Dot utility
+
+double funs(int i, double x){
+    switch(i){
+        case 0: return 1; break;
+        case 1: return x; break;
+        case 2: return x*x; break;
+        default: return NAN;
+        }
+
 double dot(gsl_vector* x, gsl_vector* y){
 	double x_dot_y;
 	gsl_blas_ddot(x, y, &x_dot_y);
@@ -17,7 +25,6 @@ double norm(gsl_vector* x){
 	return sqrt(dot(x,x));
 }
 
-// print gsl vector
 void vector_print(gsl_vector* vec){
 
 	for(int i = 0; i < vec->size; i++) {
@@ -26,7 +33,6 @@ void vector_print(gsl_vector* vec){
 	printf("\n");
 }
 
-// print gsl matrix
 void matrix_print(gsl_matrix* mat){
 
 	for(int i = 0; i < mat->size1; i++) {
@@ -38,7 +44,6 @@ void matrix_print(gsl_matrix* mat){
 	printf("\n");
 }
 
-// binary search for gsl_vector
 int binsearch_vector(gsl_vector* x, double x_new) {
    int N = x->size;
 	assert(gsl_vector_get(x, 0) <= x_new && x_new <= gsl_vector_get(x, N-1));
@@ -57,7 +62,6 @@ int binsearch_vector(gsl_vector* x, double x_new) {
 	return i;
 }
 
-// binary search for plain c array
 int binsearch_array(int N, double* x, double x_new) {
 	assert(x[0] <= x_new && x_new <= x[N-1]);
 	int i = 0;
@@ -74,12 +78,4 @@ int binsearch_array(int N, double* x, double x_new) {
 
 	return i;
 }
-
-double funs(int i, double x){
-    switch(i){
-        case 0: return 1; break;
-        case 1: return x; break;
-        case 2: return x*x; break;
-        default: return NAN;
-        }
 }

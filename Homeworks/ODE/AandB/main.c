@@ -128,8 +128,6 @@ int main() {
    odedriver(&f_SIR, n, a, b, ya, yb, h, acc, eps, outfile);
 
    }
-   
-
    return 0;
 }
 

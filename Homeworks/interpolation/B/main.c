@@ -5,11 +5,7 @@
 #include <assert.h>
 
 typedef struct {
-   int n;      
-   double* x; 
-   double* y;
-   double* b;
-   double* c;
+   int n;double* x; double* y;double* b; double* c;
 } qspline;
 
 qspline* qspline_alloc(int n, double* x, double* y);
@@ -20,16 +16,14 @@ void qspline_free(qspline *s);
 
 int main() 
 {
-    int n=30;
-	double x[n],y[n];
-
+    int n=30;double x[n],y[n];
 	for(int i=0;i<n;i++)
     {
 		x[i]=i;
 		y[i]=sin(i*i);
 	}
 
-	printf("# index 0: Data points\n");
+	printf("# index 0: Data\n");
 	for(int i=0;i<n;i++) printf("%g %g\n",x[i],y[i]);
 	printf("\n\n");
 
@@ -42,18 +36,17 @@ int main()
 		printf("%g %g\n",z,qz);       
     }     
 	printf("\n\n");
-    printf("# index 2: Integral\n");
+    	printf("# index 2: Integral values\n");
 	for(double z=x[0];z<=x[n-1];z+=dz){
 		double integ=qspline_integ(s,z);
 		printf("%g %g\n",z,integ);
 	}
 	printf("\n\n");
-    printf("# index 2: Derivative\n"); 
+    	printf("# index 2: Derivative values\n"); 
 	for(double z=x[0];z<=x[n-1];z+=dz){
 		double deriv=qspline_deriv(s,z);
 		printf("%g %g\n",z,deriv);
     }
-
     qspline_free(s);
 return 0;
 }
