@@ -1,34 +1,31 @@
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_blas.h>
 #include <gsl/gsl_sort_vector.h>
 #include <time.h>
 #include <assert.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <gsl/gsl_linalg.h>
+
 #include"Jacobi.h"
 #include"utilities.h"
+
+
 #define RND ((double)rand()/RAND_MAX-0.5)*2
 
-
-// A <- A*J
+//Functions from jacobi.
 void timesJ(gsl_matrix* A, int p, int q, double theta);
-
-// A <- J*A
 void Jtimes(gsl_matrix* A, int p, int q, double theta);
-
-// J-rotation
 void Jacobi(gsl_matrix* A, gsl_matrix* V);
 
-int main(){
-   
+
+int main(){   
     
    FILE* eigenfunctions_file = fopen("eigenfunctions.txt", "w");
    double x;
    int nplots = 3;
 
-   //New file containing eigenfunction and plot
     
     // Hamiltonian matrix
     int n = 100;
@@ -36,7 +33,6 @@ int main(){
     double k = -1/(s*s);
     double scale = sqrt(2.0/(n + 1));
     gsl_matrix* H = gsl_matrix_alloc(n, n);
-
     gsl_matrix_set(H, 0, 0, -2*k);
     gsl_matrix_set(H, 0, 1,  1*k);
 
@@ -44,8 +40,7 @@ int main(){
     gsl_matrix_set(H, i, i-1,  1*k);
       gsl_matrix_set(H, i, i  , -2*k);
       gsl_matrix_set(H, i, i+1,  1*k);
-   }  
-
+   }
     gsl_matrix_set(H, n-1, n-2,  1*k);
     gsl_matrix_set(H, n-1, n-1, -2*k);
 

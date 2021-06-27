@@ -1,25 +1,24 @@
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_blas.h>
 #include <gsl/gsl_sort_vector.h>
 #include <time.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <gsl/gsl_linalg.h>
+
 #include"Jacobi.h"
 #include"utilities.h"
+
+
 #define RND ((double)rand()/RAND_MAX-0.5)*2
 
 
-// A <- A*J
 void timesJ(gsl_matrix* A, int p, int q, double theta);
-
-// A <- J*A
 void Jtimes(gsl_matrix* A, int p, int q, double theta);
-
-// J-rotation
 void Jacobi(gsl_matrix* A, gsl_matrix* V);
+
 
 int main(){
     printf("--------------------TASK A---------------\n");
