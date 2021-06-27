@@ -3,11 +3,11 @@
 In this repository the solutions for the Exercises, Homeworks and Exam-project for the Spring semester of 2021 for Akgash Sundaralingam are presented.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-Student information:  
-Name: Akgash Sundaralingam
-Student ID: 201706696
-AU ID: au593102
-Student mail: 201706696@post.au.dk
+Student information 
+Name Akgash Sundaralingam
+Student ID 201706696
+AU ID au593102
+Student mail 201706696@post.au.dk
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The exercises have a folder for themselves called "Exercise". 
