@@ -3,6 +3,7 @@
 #In this repository the solutions for the Exercises, Homeworks and Exam-project for the Spring semester of 2021 for Akgash Sundaralingam are presented.
 
 The exercises have a folder for themselves called "Exercise". 
+
 The solved exercises are: 
 
 1. Exercise_math
@@ -15,6 +16,7 @@ The solved exercises are:
 8. Latex
 
 The Homeworks have a folder for themselves called "Homeworks". Here, each home work have either multiple or just one sub directory. In some cases the TASK A will be the first presented whereafter the TASK B/C will be presented in their associated folders. 
+
 The solved homeworks are: 
 
 1. Interpolation
