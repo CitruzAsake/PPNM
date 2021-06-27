@@ -4,10 +4,10 @@ In this repository the solutions for the Exercises, Homeworks and Exam-project f
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Student information:
-Name: Akgash Sundaralingam
-Student ID: 201706696 
-AU ID: au593102
+Student information:| 
+Name: Akgash Sundaralingam| 
+Student ID: 201706696|  
+AU ID: au593102|  
 Student mail: 201706696@post.au.dk
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
