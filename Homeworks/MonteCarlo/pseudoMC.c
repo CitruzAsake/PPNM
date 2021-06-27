@@ -59,10 +59,3 @@ for (int i = 0; i < N; ++i) {
    *result = Q*(mean_w + mean_e)/2;
    *error  = fabs(Q*mean_w - Q*mean_e);
 }
-
-
-
-
-
-
-
