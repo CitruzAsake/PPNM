@@ -13,8 +13,8 @@ quadraturespline.pdf: quadraturespline.ppl
 	pyxplot $< 1> /dev/null
 
 quadraturespline.ppl: output.txt Makefile
-	@echo 'set terminal pdf dpi 800'						>  $@
-	@echo 'set output "quadraturespline.pdf"'						>> $@
+	@echo 'set terminal pdf dpi 800'						>> $@
+	@echo 'set output "quadraturespline.pdf"'		>> $@
 	@echo 'set key outside' 								>> $@
 	@echo 'set grid'											>> $@
 	@echo 'set xlabel "$$x$$"'								>> $@
@@ -25,8 +25,7 @@ quadraturespline.ppl: output.txt Makefile
 	@echo ',"output.txt" index 1 using 1:2 w l lt 1 lw 1 ps 1 color black  title "Interpolation data" 		\\'>> $@
 	@echo ',"output.txt" index 2 using 1:2 w l lt 5 lw 1 ps 0.75 color Cyan  title "Integral data" 		\\'>> $@
 	@echo ',"output.txt" index 3 using 1:2 w l lt 6 lw 1 ps 0.75 color Mahogany  title "Derivative" 		\\'>> $@
-
-main: main.o ../utilities.o quadraturespline.o
+main: main.o utilities.o quadraturespline.o
 
 clean:
 	$(RM) main *.o *.txt *.ppl *.pdf *.png
