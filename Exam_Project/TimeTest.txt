@@ -1,3 +1,3 @@
 The onesided jacobi I have created is a little slower than the GSL. Though I like it very much.
-My_jacobiSVD algorithm used 3.53638 seconds to generate the one sided jacobi-SVD of a 300x300 matrix
-GSL SVD algorithm used 0.458887 seconds to generate the one sided jacobi-SVD of a 300x300 matrix
+My_jacobiSVD algorithm used 3.61789 seconds to generate the one sided jacobi-SVD of a 300x300 matrix
+GSL SVD algorithm used 0.463562 seconds to generate the one sided jacobi-SVD of a 300x300 matrix

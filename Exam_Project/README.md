@@ -8,33 +8,31 @@ AU ID: au593102
 Student mail: 201706696@post.au.dk
 
 My student number ends with 96 I have the exam question 8: One-sided Jacobi algorithm for Singular Value Decomposition. This exam problem has the following problemformulation:
-"Implement the one-sided Jacobi SVD algorithm."
+One-sided Jacobi algorithm for Singular Value Decomposition
 
-The Exam project has a folder called "Exam Project".
+Introduction
+The singular value decomposition (SVD) of a (real square, for simplicity) matrix A is a representation of the matrix in the form
+A = U D VT ,
 
-The exercises have a folder for themselves called "Exercise".
+where matrix D is diagonal with non-negative elements and matrices U and V are orghogonal. The diagonal elements of matrix D can always be chosen non-negative by multiplying the relevant columns of matrix U with (-1).
+SVD can be used to solve a number of problems in linear algebra.
 
-The solved exercises are:
+Problem
+Implement the one-sided Jacobi SVD algorithm.
+Algorithm
+In this method the elementary iteration is given as
+A → A J(θ,p,q)
 
-Exercise_math
-Epsilon
-Input_Output
-Plot
-gsl-integ
-Multiprocessing
-gsl-matrix
-Latex
-The Homeworks have a folder for themselves called "Homeworks". Here, each home work have either multiple or just one sub directory. In some cases the TASK A will be the first presented whereafter the TASK B/C will be presented in their associated folders.
+where the indices (p,q) are swept cyclicly (p=1..n, q=p+1..n) and where the angle θ is chosen such that the columns number p and q of the matrix AJ(θ,p,q) are orthogonal. One can show that the angle should be taken from the following equation (you should use atan2 function),
+tan(2θ)=2apTaq /(aqTaq - apTap)
 
-The solved homeworks are:
+where ai is the i-th column of matrix A (check this).
+After the iterations converge and the matrix A'=AJ (where J is the accumulation of the individual rotations) has orthogonal columns, the SVD is simply given as
 
-Interpolation
-Linear-equations
-Least-squares
-Matrix diagonalization
-ODE
-Adaptive Integration
-Monte Carlo
-Roots
-Minimum
-Neutral Network
+A=UDVT
+
+where
+V=J, Dii=||a'i||, ui=a'i/||a'i||,
+
+where a'i is the i-th column of matrix A' and ui us the i-th column of matrix U.
+
