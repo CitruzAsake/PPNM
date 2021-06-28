@@ -1,16 +1,21 @@
-CC = gcc
-CFLAGS = -Wall -fwrapv -O
-
-.PHONEY: default
-default: out.txt
-	cat $<
+CC = gcc # using gcc as the c-compiler
+CFLAGS = -O -std=gnu11 -fwrapv # -O is the optimization, use standart gnu11
+LDLIBS = -lm # lm = link math libary
 
 out.txt: main
-	./$< > $@
+	./main > out.txt
+	cat out.txt
 
-main: main.c tau.c
-	$(CC) main.c tau.c -o main
+main: equal.o epsilon.o
+	$(CC) $^ -o $@
+
+equal.o: equal.c
+	$(CC) -c $^ -o $@ $(CFLAGS)
+
+epsilon.o: epsilon.c
+	$(CC) -c $^ -o $@ $(CFLAGS)
 
 .PHONEY: clean
+
 clean:
-	$(RM) main out.txt
+	$(RM) *.o *.txt main
