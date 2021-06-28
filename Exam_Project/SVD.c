@@ -4,7 +4,7 @@
 #include <gsl/gsl_blas.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_matrix.h>
-#include "My_vec_calc.h"
+#include "utilities.h"
 #include "SVD.h"
 
 void AtimesJ(gsl_matrix* A, int p, int q, double theta){

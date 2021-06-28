@@ -1,5 +1,5 @@
-My_SVD function took 9.57974 seconds to compute SVD of a 400x400 matrix
-GSL SVD function took 1.01533 seconds to compute SVD of a 400x400 matrix
+My_SVD function took 9.74996 seconds to compute SVD of a 400x400 matrix
+GSL SVD function took 1.02046 seconds to compute SVD of a 400x400 matrix
 
 
 

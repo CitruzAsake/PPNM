@@ -5,7 +5,7 @@
 #include <gsl/gsl_vector.h>
 #include<assert.h>
 #include <gsl/gsl_matrix.h>
-#include "My_vec_calc.h"
+#include "utilities.h"
 
 double dot(gsl_vector* x, gsl_vector* y){
         double x_dot_y;

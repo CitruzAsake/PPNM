@@ -8,7 +8,7 @@
 
 // HOMEMADE INCLUSIONS //
 
-#include "My_vec_calc.h"
+#include "utilities.h"
 #include "SVD.h"
 
 // MAIN FUNCTION //

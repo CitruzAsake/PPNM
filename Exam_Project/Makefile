@@ -10,7 +10,7 @@ out.txt: main
 	./$< > $@
 	cat out.txt
 
-main: main.o My_vec_calc.o SVD.o
+main: main.o utilities.o SVD.o
 
 clean:
 	$(RM) main out.txt TimeTest.txt *.o
