@@ -38,8 +38,6 @@ fitplot.ppl: outfile.txt Makefile
 
 	@echo ',exp(-x*x)*(-5*sin(5*x-1)-2*x*cos(5*x-1)) w l lt 2 lw 2 color blue title "Analytical derivative function" \\' >> $@
 
-	@echo ',-0.1877184794-0.045046858263+cos(1.0)*x+5.0/2.0*sin(1.0)*x**2-9.0/2.0*cos(1.0)*x**3-155.0/24.0*sin(1.0)*x**4+937.0/120.0*cos(1.0)*x**5 w l lt 5 lw 2 color blue title "Analytical Taylor expansion function" \\' >> $@
-
 	@echo ',"outfile.txt" index 0 using 1:2 w p pt 31 color Red title "Data"\\'>> $@
 
 outfile.txt: main

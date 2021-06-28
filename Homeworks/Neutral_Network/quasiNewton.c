@@ -30,12 +30,8 @@ void numeric_gradient(double F(gsl_vector*), gsl_vector*x, gsl_vector*grad)
 
 int quasiNewton(double F(gsl_vector* x), gsl_vector*x, double acc) 
 {
-	int dim=x->size;
-	int steps=0;
-	int d=0;
-	int g=0;
-	double fz;
-
+	int dim=x->size;int steps=0;
+	int d=0;int g=0;double fz;
 	gsl_matrix* B=gsl_matrix_alloc(dim,dim);
 	gsl_vector* gradient=gsl_vector_alloc(dim);
 	gsl_vector* Dx=gsl_vector_alloc(dim);
