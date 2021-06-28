@@ -21,10 +21,10 @@ double fit(double x){
 
 int main()
 {
-    int n=5;
+    int n=9;
 	ann* network=ann_alloc(n,activation);
 	double min=-1,max=1;
-	int nx=20;
+	int nx=13;
 	gsl_vector* vx=gsl_vector_alloc(nx);
 	gsl_vector* vy=gsl_vector_alloc(nx);
 

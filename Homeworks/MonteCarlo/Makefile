@@ -13,8 +13,9 @@ errorscaling.pdf: errorscaling.ppl
 errorscaling.ppl: errorscaling.txt Makefile
 	@echo 'set terminal pdf dpi 800'						>  $@
 	@echo 'set output "errorscaling.pdf"'						>> $@
-	@echo 'set key outside' 								>> $@
-	@echo 'set grid'											>> $@
+	@echo 'set key top' 								>> $@
+	@echo set format x "%.0e"; >> $@
+	@echo set format y "%.0e"; >> $@
 	@echo 'set xlabel "$$\ln(N)$$"'								>> $@
 	@echo 'set ylabel "$$\ln$$(Error)"'								>> $@
 	@echo 'set title "Error Values for our problem"'	>> $@

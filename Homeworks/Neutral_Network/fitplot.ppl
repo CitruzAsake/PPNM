@@ -1,7 +1,6 @@
 set terminal pdf dpi 800
 set output "fitplot.pdf"
-set key outside
-set grid
+set key top
 set xlabel "$x$"
 set ylabel "$y$"
 set title "Artificial Neural Network different fits"

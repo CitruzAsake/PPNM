@@ -20,9 +20,7 @@ fitplot.ppl: outfile.txt Makefile
 
 	@echo 'set output "fitplot.pdf"'						>> $@
 
-	@echo 'set key outside'								>> $@
-
-	@echo 'set grid'								>> $@
+	@echo 'set key top'								>> $@
 
 	@echo 'set xlabel "$$x$$"'							>> $@
 

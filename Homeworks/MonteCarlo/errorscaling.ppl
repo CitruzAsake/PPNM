@@ -1,7 +1,6 @@
 set terminal pdf dpi 800
 set output "errorscaling.pdf"
-set key outside
-set grid
+set key top
 set xlabel "$\ln(N)$"
 set ylabel "$\ln$(Error)"
 set title "Error Values for our problem"
