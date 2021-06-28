@@ -5,7 +5,7 @@
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_matrix.h>
 #include "utilities.h"
-#include "SVD.h"
+#include "jacobiSVD.h"
 
 void timesJ(gsl_matrix* A, int p, int q, double theta){
 	double c=cos(theta),s=sin(theta);
@@ -17,7 +17,7 @@ void timesJ(gsl_matrix* A, int p, int q, double theta){
 		}
 }
 
-void JSVD(gsl_matrix *A, gsl_matrix *V, gsl_matrix *U, gsl_matrix *D){
+void jacobiSVD(gsl_matrix *A, gsl_matrix *V, gsl_matrix *U, gsl_matrix *D){
   gsl_matrix_set_identity(V);
   int nSteps = 0;
   int doCheck = 1;

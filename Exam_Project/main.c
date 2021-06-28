@@ -2,7 +2,7 @@
 #include "math.h"
 
 #include "utilities.h"
-#include "SVD.h"
+#include "jacobiSVD.h"
 
 #include <gsl/gsl_linalg.h>
 #include <gsl/gsl_blas.h>
@@ -10,6 +10,7 @@
 #include <gsl/gsl_matrix.h>
 #include <time.h>
 
+void jacobiSVD(gsl_matrix *A, gsl_matrix *V, gsl_matrix *U, gsl_matrix *D);
 
 int main() {
 	int n = 3;
@@ -33,7 +34,7 @@ int main() {
 	printf("\n Initial Matrix A =\n");
 	matrix_print(stdout,Adub);
 
-	JSVD(A, V, U, D);
+	jacobiSVD(A, V, U, D);
 
 	printf("End matrix A =\n");
 	matrix_print(stdout,A);
@@ -91,7 +92,7 @@ int main() {
 
 	// TESTING My_SVD
 	start = clock();
-	JSVD(M, MV, MU, MD);
+	jacobiSVD(M, MV, MU, MD);
 	end = clock();
 	time_used = ((double)(end-start)) / CLOCKS_PER_SEC;
 	fprintf(stream2,"The onesided jacobi I have created is a little slower than the GSL. Though I like it very much.\n");
