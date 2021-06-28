@@ -1,0 +1,2 @@
+Number of interation is equal to 200, estimate of pi is given as 2.88
+For larger N we get a better estimation of pi

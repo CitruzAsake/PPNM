@@ -1,32 +1,51 @@
-/* Program to compute Pi using Monte Carlo methods */
-
-#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
-#define SEED 35791246
+#include <pthread.h>
+#include <stdlib.h>
+#define N 100
 
-main(int argc, char* argv)
-{
-   int niter=0;
-   double x,y;
-   int i,count=0; /* # of points in the 1st quadrant of unit circle */
-   double z;
-   double pi;
-  unsigned int q;
-   printf("Enter the number of iterations used to estimate pi: ");
-   scanf("%d",&niter);
-
-   /* initialize random numbers */
-   srand(SEED);
-   count=0;
-   for ( i=0; i<niter; i++) {
-      x = (double)rand_r(&q)/RAND_MAX;
-      y = (double)rand_r(&q)/RAND_MAX;
-      z = x*x+y*y;
-      if (z<=1) count++;
-      }
-   pi=(double)count/niter*4;
-   printf("# of trials= %d , estimate of pi is %g \n",niter,pi);
+void* monte_c(void* arg1){
+  FILE* datafile=fopen("datafile.txt","a");
+  double j,k,l;
+  int *count= (int*)arg1;
+  unsigned int SEED;
+  for (int i=0; i<=N; i++){
+    j= (double)rand_r(&SEED)/RAND_MAX;
+    k= (double)rand_r(&SEED)/RAND_MAX;
+    l=pow((j),2)+pow((k),2);
+    fprintf(datafile,"%10g %10g \n",j,k);
+    if (l<=1){ *count=*count+1;}
+  }
+  fclose(datafile);
+  return NULL;
+  
 }
 
+int main() {
+  double pi; int c1=0, c2=0;
+  pthread_t thread1;
+  FILE* data1=fopen("datafile.txt","w");
+
+  pthread_create(&thread1, NULL, monte_c, (void*) &c1);
+
+  monte_c((void*)&c2);
+
+  void* returnval = NULL;
+
+  pthread_join(thread1,returnval);
+
+  int tot_count=c1+c2;
+  
+  pi=(double)(tot_count)/(N*2) *4;
+  printf("Number of interation is equal to %i, estimate of pi is given as %g\n",N*2,pi);
+  printf("For larger N we get a better estimation of pi");
+  FILE* circle=fopen("circledatafile.txt","w");
+  double zk=1e-3;
+  for(double j=0;j<=M_PI/2;j=j+zk){
+    fprintf(circle,"%10g %10g\n",cos(j),sin(j));
+  }
+
+  fclose(data1);
+  fclose(circle);
+  return 0;
+}
