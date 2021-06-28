@@ -7,9 +7,8 @@
 #include "utilities.h"
 #include "SVD.h"
 
-void AtimesJ(gsl_matrix* A, int p, int q, double theta){
-	double c=cos(theta);
-  double s=sin(theta);
+void timesJ(gsl_matrix* A, int p, int q, double theta){
+	double c=cos(theta),s=sin(theta);
 	for(int i=0;i<A->size1;i++){
 		double new_aip=c*gsl_matrix_get(A,i,p)-s*gsl_matrix_get(A,i,q);
 		double new_aiq=s*gsl_matrix_get(A,i,p)+c*gsl_matrix_get(A,i,q);
@@ -47,8 +46,8 @@ void JSVD(gsl_matrix *A, gsl_matrix *V, gsl_matrix *U, gsl_matrix *D){
 
     		if(new_app != app || new_aqq != aqq) {
     			doCheck=1;
-    			AtimesJ(A,p,q, theta);
-    			AtimesJ(V,p,q, theta);
+    			timesJ(A,p,q, theta);
+    			timesJ(V,p,q, theta);
     		}
     	}
     }
