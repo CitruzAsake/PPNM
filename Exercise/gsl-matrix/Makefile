@@ -4,7 +4,8 @@ LDLIBS += $(shell gsl-config --libs)
 
 .PHONEY:default
 
-degault:out.txt
+default:out.txt
+	cat out.txt
 
 out.txt:main
 	./$< > $@

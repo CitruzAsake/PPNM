@@ -2,6 +2,9 @@ CC=gcc
 CFLAGS = -Wall -std=gnu99
 LDLIBS = -lm
 
+all: out.txt
+	cat out.txt
+
 .PHONEY: all clean
 	all              : out.txt           ; cat $<
 out.txt          : main              ; ./$< > $@
