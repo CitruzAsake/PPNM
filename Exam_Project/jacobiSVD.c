@@ -57,8 +57,6 @@ void jacobiSVD(gsl_matrix *A, gsl_matrix *V, gsl_matrix *U, gsl_matrix *D){
 
 
 
-  gsl_vector_free(ap);
-  gsl_vector_free(aq);
-  gsl_vector_free(buf);
-  gsl_vector_free(vec);
+  gsl_vector_free(ap);  gsl_vector_free(aq);
+  gsl_vector_free(buf);  gsl_vector_free(vec);
 }

@@ -100,13 +100,11 @@ int main() {
 	time_used = ((double)(end-start)) / CLOCKS_PER_SEC;
 	fprintf(stream2, "GSL SVD algorithm used %g seconds to generate the one sided jacobi-SVD of a %dx%d matrix\n",time_used,n,n);
 	
-	gsl_matrix_free(A);
-	gsl_matrix_free(V);
-	gsl_matrix_free(Adub);
-	gsl_matrix_free(B1);
-	gsl_matrix_free(B2);
-	gsl_matrix_free(U);
+	gsl_matrix_free(A);	gsl_matrix_free(V);
+	gsl_matrix_free(Adub);	gsl_matrix_free(B1);
+	gsl_matrix_free(B2);	gsl_matrix_free(U);
 	gsl_matrix_free(D);
+
 	//Freeing First matrix in test
 	gsl_matrix_free(K);gsl_matrix_free(KV);	gsl_matrix_free(KU);gsl_matrix_free(KD);
 	//Freeing Second matrix in test
