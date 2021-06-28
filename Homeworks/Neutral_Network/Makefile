@@ -20,7 +20,7 @@ fitplot.ppl: outfile.txt Makefile
 
 	@echo 'set output "fitplot.pdf"'						>> $@
 
-	@echo 'set key top'								>> $@
+	@echo 'set key outside'								>> $@
 
 	@echo 'set xlabel "$$x$$"'							>> $@
 
@@ -30,15 +30,15 @@ fitplot.ppl: outfile.txt Makefile
 
 	@echo 'plot \\'									>> $@
 
-	@echo '"outfile.txt"  index 1 using 1:1 w l lw 2 color black  title "Integral fit func" \\'>> $@
+	@echo '"outfile.txt"  index 1 using 1:1 w l lw 1 color black  title "Integral fit func" \\'>> $@
 
-	@echo ',"outfile.txt" index 1 using 1:2 w l lw 2 color cyan title "Curve fit func" \\'>> $@
+	@echo ',"outfile.txt" index 1 using 1:2 w l lw 1 color cyan title "Curve fit func" \\'>> $@
 
-	@echo ',"outfile.txt" index 1 using 1:3 w l lw 2 color SpringGreen title "Derivative fit func" \\'>> $@
+	@echo ',"outfile.txt" index 1 using 1:3 w l lw 1 color SpringGreen title "Derivative fit func" \\'>> $@
 
-	@echo ',exp(-x*x)*(-5*sin(5*x-1)-2*x*cos(5*x-1)) w l lt 2 lw 2 color blue title "Analytical derivative function" \\' >> $@
+	@echo ',exp(-x*x)*(-5*sin(5*x-1)-2*x*cos(5*x-1)) w l lt 2 lw 2 color Red title "Analytical derivative function" \\' >> $@
 
-	@echo ',"outfile.txt" index 0 using 1:2 w p pt 31 color Red title "Data"\\'>> $@
+	@echo ',"outfile.txt" index 0 using 1:2 w p pt 31 color Black title "Data"\\'>> $@
 
 outfile.txt: main
 	./$< 1> $@ 2>log
