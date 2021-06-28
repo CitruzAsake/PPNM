@@ -15,7 +15,7 @@ plot.png: plot.ppl
 	pyxplot $< 1> /dev/null 
 
 plot.ppl: data.txt Makefile
-	@echo 'set terminal png dpi 600'						>  $@ 
+	@echo 'set terminal png dpi 800'						>  $@ 
 	@echo 'set output "plot.png"'							>> $@           		
 	@echo 'set key outside' 								>> $@           		
 	@echo 'set grid'											>> $@           		
@@ -23,7 +23,7 @@ plot.ppl: data.txt Makefile
 	@echo 'set ylabel "$$t/\mathrm{days}$$"'			>> $@     		
 	@echo 'set title "Raw data with error bars"'		>> $@	
 	@echo 'plot \\'											>> $@
-	@echo ' "data.txt" using 1:2:3 with yerrorbars color black title "Measurements" 	\\'>> $@
+	@echo ' "data.txt" using 1:2:3 with yerrorbars color black title "Data points with errorbars" 	\\'>> $@
 
 logplot.png: logplot.ppl
 	pyxplot $< 1> /dev/null
@@ -41,9 +41,9 @@ logplot.ppl: logdata.txt fit.txt params.txt Makefile
 	@echo 'dlambda = B.split()[1]'                  >> $@
 	@echo 'set key outside' 								>> $@           		
 	@echo 'set grid'											>> $@           		
-	@echo 'set xlabel "$$\ln(y)$$"'						>> $@      		
-	@echo 'set ylabel "$$\ln(t/\mathrm{days})$$"'	>> $@     		
-	@echo 'set title "Ordinary least squares"'		>> $@	
+	@echo 'set ylabel "$$\ln(y)$$"'						>> $@      		
+	@echo 'set xlabel "$$\ln(t/\mathrm{days})$$"'	>> $@     		
+	@echo 'set title "Least squares"'		>> $@	
 	@echo 'plot \\'											>> $@
 	@echo ' "fit.txt" using 1:2 w l lw 1 lt 5 color black title "$$\ln(y) = (%.2f \pm %.2f) + (%.3f \pm %.3f)t$$"%(lna, dlna, lambda, dlambda) \\'>> $@
 	@echo ',"fit.txt" using 1:3 w l lw 1 lt 3 color black title "" 					\\'>> $@
