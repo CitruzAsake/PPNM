@@ -11,6 +11,12 @@ AU ID: au593102
 Student mail: 201706696@post.au.dk
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
+My student number ends with 96 I have the exam question 8: One-sided Jacobi algorithm for Singular Value Decomposition. This exam problem has the following problemformulation:   
+"Implement the one-sided Jacobi SVD algorithm."
+
+The Exam project has a folder called "Exam Project". 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The exercises have a folder for themselves called "Exercise". 
 
@@ -41,5 +47,3 @@ The solved homeworks are:
 9. Minimum
 10. Neutral Network
 
--------------------------------------------------------------------------------------------------------------------------------------------------------
-The Exam project has a folder called "Exam Project". 
