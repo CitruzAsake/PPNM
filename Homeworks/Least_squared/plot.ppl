@@ -1,7 +1,6 @@
 set terminal png dpi 800
 set output "plot.png"
 set key outside
-set grid
 set xlabel "$y$"
 set ylabel "$t/\mathrm{days}$"
 set title "Raw data with error bars"

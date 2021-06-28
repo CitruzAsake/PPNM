@@ -2,7 +2,7 @@ set terminal pdf dpi 800
 set output "errorscaling.pdf"
 set key top
 set xlabel "$\ln(N)$"
-set ylabel "$\ln$(Error)"
+set ylabel "$\ln$(Error)%"
 set title "Error Values for our problem"
 plot \
 "errorscaling.txt" using (ln($1)):(ln($2)) w l lw 2 color Blue  title "Value for Psuedo" 				\

@@ -17,9 +17,9 @@ errorscaling.ppl: errorscaling.txt Makefile
 	@echo set format x "%.0e"; >> $@
 	@echo set format y "%.0e"; >> $@
 	@echo 'set xlabel "$$\ln(N)$$"'								>> $@
-	@echo 'set ylabel "$$\ln$$(Error)"'								>> $@
+	@echo 'set ylabel "$$\ln$$(Error)%"'								>> $@
 	@echo 'set title "Error Values for our problem"'	>> $@
-	@echo 'plot \\'																								>> $@
+	@echo 'plot \\'						>> $@
 	@echo '"errorscaling.txt" using (ln($$1)):(ln($$2)) w l lw 2 color Blue  title "Value for Psuedo" 				\\'>> $@
 	@echo ',"errorscaling.txt" using (ln($$1)):(ln($$3)) w l lw 2 color Black  title "Values for Quasi" 	\\'>> $@
 

@@ -6,9 +6,8 @@ LDLIBS += $(shell gsl-config --libs)
 all: plot.png logplot.png output.txt
 	@echo
 	@cat output.txt
-	@echo 'Compare to modern half-life for Ra-224 (from Wikipedia): (3.6319 +/- 0.0023) days = [3.6296, 3.6342] days'
+	@echo 'Compare between half-life for Ra-224: (3.6319 +/- 0.0023) days = [3.6296, 3.6342] days'
 	@echo 'My result does not agree within one standard deviation but it is not too far off!'
-	@echo 'Check .png plots!'
 	@echo
 
 plot.png: plot.ppl
@@ -16,10 +15,9 @@ plot.png: plot.ppl
 
 plot.ppl: data.txt Makefile
 	@echo 'set terminal png dpi 800'						>  $@ 
-	@echo 'set output "plot.png"'							>> $@           		
-	@echo 'set key outside' 								>> $@           		
-	@echo 'set grid'											>> $@           		
-	@echo 'set xlabel "$$y$$"'								>> $@      		
+	@echo 'set output "plot.png"'							>> $@           	
+	@echo 'set key outside' 								>> $@           
+	@echo 'set xlabel "$$y$$"'								>> $@  		
 	@echo 'set ylabel "$$t/\mathrm{days}$$"'			>> $@     		
 	@echo 'set title "Raw data with error bars"'		>> $@	
 	@echo 'plot \\'											>> $@
@@ -48,13 +46,13 @@ logplot.ppl: logdata.txt fit.txt params.txt Makefile
 	@echo ' "fit.txt" using 1:2 w l lw 1 lt 5 color black title "$$\ln(y) = (%.2f \pm %.2f) + (%.3f \pm %.3f)t$$"%(lna, dlna, lambda, dlambda) \\'>> $@
 	@echo ',"fit.txt" using 1:3 w l lw 1 lt 3 color black title "" 					\\'>> $@
 	@echo ',"fit.txt" using 1:4 w l lw 1 lt 3 color black title "" 					\\'>> $@
-	@echo ',"logdata.txt" using 1:2:3 with yerrorbars color blue title "Measurements" 	\\'>> $@
+	@echo ',"logdata.txt" using 1:2:3 with yerrorbars color blue title "Measurements with errorbars" 	\\'>> $@
 
 logdata.txt fit.txt params.txt output.txt: main time.txt activity.txt unceractivity.txt
 	./$< > output.txt
 
 data.txt:
-	@echo  1  117     5.85    > $@
+	@echo  1  117     5.85    >> $@
 	@echo  2  100     5.0     >> $@
 	@echo  3   88     4.4     >> $@
 	@echo  4   72     3.6     >> $@

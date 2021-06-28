@@ -7,21 +7,15 @@
 
 
 void pseudoMC(int dim, double f(int dim, double* x), double* a, double* b, double N, double* result2, double* error2);
-
 void randomx(int dim, double* a, double* b, double* x);
-
 void plainmc(int dim,double f(int dim,double* x),double* a,double* b,int N, double* result, double* error);
-
 void Halton(int n, int dim, double *a, double *b, double *x);
 
-//From quadratures we get the following:
-
-double Func1(double x){return sqrt(x);};
+double Func1(double x){return exp(-x);};
 double Func2(double x){return 4.*sqrt(1-(x)*(x));};
 double Func3(double x){return 1/(sqrt(x));};
-double Func4(double x){return log(x)/sqrt(x);}
+double Func4(double x){return log(x*x)/sqrt(x)+2;}
 
-//function
 double func(int dim, double* x)
 {
    return 1.0/(1 - cos(x[0])*cos(x[1])*cos(x[2]))/(M_PI*M_PI*M_PI);
@@ -49,7 +43,7 @@ int main()
         pseudoMC(dim, Func1, a, b, N, &result2, &error2);
         double exact = 2/3.;
       	printf("---------------------------------------\n");
-        printf("∫ dx √(x) from 0 to 1 using the plain Monte Carlo algorithm \n");
+        printf("∫ dx exp(-x) from 0 to 1 using the plain Monte Carlo algorithm \n");
         printf("Value = %.10f \n", result);
         printf("Error = %.10f \n", error);
         printf("Exact = %.10f \n", exact);
@@ -148,7 +142,7 @@ int main()
         pseudoMC(dim, Func4, a, b, N, &result2, &error2);
         double exact = -4.;
         printf("--------------------------------\n");
-        printf("∫ ln(x)/√(x) from 0 to 1 using the plain Monte Carlo algorithm\n");
+        printf("∫ ln(x*x)/√(x)+2 from 0 to 1 using the plain Monte Carlo algorithm\n");
         printf("Value = %.10f \n", result);
         printf("Error = %.10f \n", error);
         printf("Exact = %.10f \n", exact);

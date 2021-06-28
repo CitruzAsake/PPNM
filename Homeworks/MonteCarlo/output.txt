@@ -1,15 +1,15 @@
 ---------------------------------------
-∫ dx √(x) from 0 to 1 using the plain Monte Carlo algorithm 
-Value = 0.6645409032 
-Error = 0.0023562175 
+∫ dx exp(-x) from 0 to 1 using the plain Monte Carlo algorithm 
+Value = 0.6338241431 
+Error = 0.0018084038 
 Exact = 0.6666666667 
-Diff  = 0.0021257635 
+Diff  = 0.0328425235 
 ---------------------------------------
 ∫ dx √(x) from 0 to 1 using the pseudo Monte Carlo algorithm 
-Value = 0.6663454182 
-Error = 0.0003015794 
+Value = 0.6323514736 
+Error = 0.0002452144 
 Exact = 0.6666666667 
-Diff  = 0.0003212485 
+Diff  = 0.0343151931 
 -----------------------------------
 ∫ dx 4√(1-x²) from 0 to 1 using the plain Monte Carlo algorithm 
 Value = 3.1503873205 
@@ -29,11 +29,11 @@ Error = 0.0247388098
 Exact = 2.0000000000 
 Diff  = 0.0253704321 
 --------------------------------
-∫ ln(x)/√(x) from 0 to 1 using the plain Monte Carlo algorithm
-Value = -5.0816526034 
-Error = 1.2124492940 
+∫ ln(x*x)/√(x)+2 from 0 to 1 using the plain Monte Carlo algorithm
+Value = -8.1633052068 
+Error = 2.4248985879 
 Exact = -4.0000000000 
-Diff  = 1.0816526034 
+Diff  = 4.1633052068 
 --------------------------------
 1/π³ ∫ dxdydz ([1-cos(x)cos(y)cos(z)]-1) from 0 to π using plain Monte Carlo 
 Value = 1.3250137056 
