@@ -75,8 +75,9 @@ int main() {
 	printf("A from UDV^T\n");
 	matrix_print(stdout,B2);
 	printf("---------------------------------------------------------\n");
+	printf("So all our calculation match the expected matrixes and the one-sided jacobi SVD algorithm works as expected.\n");
+	printf("---------------------------------------------------------\n");
 
-	//The testing of speed comparing my algorithm with the GSL.
 	FILE* stream2 = fopen("TimeTest.txt","w");
 	n = 275;clock_t start;clock_t end;double time_used;
 

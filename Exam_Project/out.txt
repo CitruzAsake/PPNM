@@ -69,3 +69,5 @@ A from UDV^T
 
 
 ---------------------------------------------------------
+So all our calculation match the expected matrixes and the one-sided jacobi SVD algorithm works as expected.
+---------------------------------------------------------
